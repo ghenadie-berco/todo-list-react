@@ -4,7 +4,7 @@ import "./TaskItem.css";
 
 function TaskItem({ task, toggleCompleted, deleteTask }) {
   return (
-    <ListGroup.Item className="task-item">
+    <ListGroup.Item className="d-flex task-item">
       <span
         className={`check-icon ${task.completed ? "completed" : ""}`}
         onClick={() => toggleCompleted(task, !task.completed)}
@@ -12,7 +12,7 @@ function TaskItem({ task, toggleCompleted, deleteTask }) {
         {task.completed && <Icon.CheckLg></Icon.CheckLg>}
       </span>
       <span
-        className={`ms-3 task-text ${
+        className={`${
           task.completed ? "text-decoration-line-through text-muted" : ""
         }`}
       >
