@@ -53,6 +53,7 @@
   cursor: grab !important;
   color: #aaa;
   padding-bottom: 0.25rem;
+  touch-action: none;
 }
 
 .task-name {
