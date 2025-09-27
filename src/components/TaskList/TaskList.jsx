@@ -7,7 +7,7 @@ function TaskList({ tasks, toggleCompleted, deleteTask }) {
     <ListGroup className='list'>
       {tasks.map((task) => (
         <TaskItem
-          key={task}
+          key={task.id}
           task={task}
           toggleCompleted={toggleCompleted}
           deleteTask={deleteTask}

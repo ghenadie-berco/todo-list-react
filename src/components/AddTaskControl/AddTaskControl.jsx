@@ -17,15 +17,15 @@ function AddTaskControl({ addTask }) {
   };
 
   return (
-    <div class="add-task-container">
+    <div className="add-task-container">
       <input
         ref={inputRef}
         type="text"
-        class="add-task-input"
+        className="add-task-input"
         placeholder="Add new task..."
         onChange={(e) => setName(e.target.value)}
       />
-      <button class="add-task-button" onClick={onAddTask}>
+      <button className="add-task-button" onClick={onAddTask}>
         <PlusLg></PlusLg>
       </button>
     </div>
