@@ -2,12 +2,14 @@ import { useState } from "react";
 import * as Icon from "react-bootstrap-icons";
 import { ListGroup, Form } from "react-bootstrap";
 import "./TaskItem.css";
+
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
 function TaskItem({ task, toggleCompleted, deleteTask, editTask }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedName, setEditedName] = useState(task.name);
+
   const {
     attributes,
     listeners,
@@ -15,7 +17,7 @@ function TaskItem({ task, toggleCompleted, deleteTask, editTask }) {
     transform,
     transition,
   } = useSortable({ id: task.id });
-  
+
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
@@ -37,14 +39,13 @@ function TaskItem({ task, toggleCompleted, deleteTask, editTask }) {
   };
 
   return (
-    <ListGroup.Item ref={setNodeRef} style={style} className="d-flex task-item">
-
-      <span className="drag-handle" {...attributes} {...listeners}>
-        <Icon.GripVertical />
-      </span>
+    <ListGroup.Item ref={setNodeRef} style={style} {...attributes} {...listeners} className="d-flex task-item">
       <span
         className={`check-icon ${task.completed ? "completed" : ""}`}
-        onClick={() => toggleCompleted(task, !task.completed)}
+        onClick={(e) => {
+          e.stopPropagation();
+          toggleCompleted(task, !task.completed);
+        }}
       >
         {task.completed && <Icon.CheckLg />}
       </span>
@@ -56,6 +57,7 @@ function TaskItem({ task, toggleCompleted, deleteTask, editTask }) {
           onChange={(e) => setEditedName(e.target.value)}
           onBlur={handleSave}
           onKeyDown={handleKeyDown}
+          onClick={(e) => e.stopPropagation()}
           autoFocus
           className="edit-input"
         />
@@ -64,22 +66,31 @@ function TaskItem({ task, toggleCompleted, deleteTask, editTask }) {
           className={`task-name ${
             task.completed ? "text-decoration-line-through text-muted" : ""
           }`}
-          onClick={() => setIsEditing(true)}
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsEditing(true);
+          }}
         >
           {task.name}
         </span>
       )}
-      
+
       <div className="action-icon-container">
         {isEditing ? (
-          <Icon.CheckLg 
-            className="save-icon" 
-            onClick={handleSave} 
+          <Icon.CheckLg
+            className="save-icon"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleSave();
+            }}
           />
         ) : (
           <Icon.Trash3
             className="delete-icon"
-            onClick={() => deleteTask(task)}
+            onClick={(e) => {
+              e.stopPropagation();
+              deleteTask(task);
+            }}
           />
         )}
       </div>
