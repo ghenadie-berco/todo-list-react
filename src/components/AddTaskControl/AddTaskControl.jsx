@@ -16,6 +16,12 @@ function AddTaskControl({ addTask }) {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      onAddTask();
+    }
+  };
+
   return (
     <div className="add-task-container">
       <input
@@ -24,6 +30,7 @@ function AddTaskControl({ addTask }) {
         className="add-task-input"
         placeholder="Add new task..."
         onChange={(e) => setName(e.target.value)}
+        onKeyDown={handleKeyDown}
       />
       <button className="add-task-button" onClick={onAddTask}>
         <PlusLg></PlusLg>

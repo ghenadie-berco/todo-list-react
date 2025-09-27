@@ -21,3 +21,28 @@ body {
 body {
   background: #b8d6ea;
 }
+
+/* Works on Chrome, Edge, and Safari */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #76c4f8;
+  border-radius: 10px;
+  border: 2px solid #f1f1f1; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #76c4f8;
+}
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #76c4f8 #f1f1f1; 
+}
