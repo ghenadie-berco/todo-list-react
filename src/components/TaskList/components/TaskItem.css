@@ -2,13 +2,17 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: .5rem;
+  gap: 0.5rem;
   border: 1px solid #e0e0e0;
-  border-radius: 12px;
+  border-radius: .5rem;
   padding: 1rem 1.25rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   background-color: #ffffff;
   font-size: 1rem;
+}
+
+.icon {
+  flex-shrink: 0;
 }
 
 .check-icon {
@@ -33,7 +37,7 @@
 }
 
 .delete-icon {
-  color: #fd6868; 
+  color: #fd6868;
   font-size: 1.25rem;
   padding: 0;
   text-decoration: none;
@@ -43,4 +47,30 @@
 .delete-icon:hover {
   color: #d32f2f;
   cursor: pointer;
+}
+
+.drag-handle {
+  cursor: grab !important;
+  color: #aaa;
+  padding-bottom: 0.25rem;
+}
+
+.task-name {
+  flex-grow: 1;
+  cursor: pointer;
+}
+
+.edit-input {
+  height: calc(1.5em + 0.5rem + 2px) !important;
+  padding: 0.25rem 0.5rem !important;
+}
+
+.save-icon {
+  color: #28a745;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.action-icon-container {
+  margin-left: auto;
 }

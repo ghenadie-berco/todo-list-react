@@ -31,5 +31,6 @@ section {
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.326);
   display: flex;
   flex-direction: column;
-  padding: .5rem;
+  padding: 0.5rem;
+  gap: 0.5rem;
 }

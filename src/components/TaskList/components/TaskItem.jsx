@@ -1,27 +1,88 @@
+import { useState } from "react";
 import * as Icon from "react-bootstrap-icons";
-import { ListGroup, Button } from "react-bootstrap";
+import { ListGroup, Form } from "react-bootstrap";
 import "./TaskItem.css";
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 
-function TaskItem({ task, toggleCompleted, deleteTask }) {
+function TaskItem({ task, toggleCompleted, deleteTask, editTask }) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedName, setEditedName] = useState(task.name);
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+  } = useSortable({ id: task.id });
+  
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
+
+  const handleSave = () => {
+    if (editedName.trim()) {
+      editTask(task.id, editedName);
+    } else {
+      setEditedName(task.name);
+    }
+    setIsEditing(false);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleSave();
+    }
+  };
+
   return (
-    <ListGroup.Item className="d-flex task-item">
+    <ListGroup.Item ref={setNodeRef} style={style} className="d-flex task-item">
+
+      <span className="drag-handle" {...attributes} {...listeners}>
+        <Icon.GripVertical />
+      </span>
       <span
         className={`check-icon ${task.completed ? "completed" : ""}`}
         onClick={() => toggleCompleted(task, !task.completed)}
       >
-        {task.completed && <Icon.CheckLg></Icon.CheckLg>}
+        {task.completed && <Icon.CheckLg />}
       </span>
-      <span
-        className={`${
-          task.completed ? "text-decoration-line-through text-muted" : ""
-        }`}
-      >
-        {task.name}
-      </span>
-      <Icon.Trash3
-        className="delete-icon"
-        onClick={() => deleteTask(task)}
-      ></Icon.Trash3>
+
+      {isEditing ? (
+        <Form.Control
+          type="text"
+          value={editedName}
+          onChange={(e) => setEditedName(e.target.value)}
+          onBlur={handleSave}
+          onKeyDown={handleKeyDown}
+          autoFocus
+          className="edit-input"
+        />
+      ) : (
+        <span
+          className={`task-name ${
+            task.completed ? "text-decoration-line-through text-muted" : ""
+          }`}
+          onClick={() => setIsEditing(true)}
+        >
+          {task.name}
+        </span>
+      )}
+      
+      <div className="action-icon-container">
+        {isEditing ? (
+          <Icon.CheckLg 
+            className="save-icon" 
+            onClick={handleSave} 
+          />
+        ) : (
+          <Icon.Trash3
+            className="delete-icon"
+            onClick={() => deleteTask(task)}
+          />
+        )}
+      </div>
     </ListGroup.Item>
   );
 }

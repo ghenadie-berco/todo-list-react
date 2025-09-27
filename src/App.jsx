@@ -2,6 +2,14 @@ import "./App.css";
 import TaskList from "./components/TaskList/TaskList";
 import AddTaskControl from "./components/AddTaskControl/AddTaskControl";
 import { useEffect, useState } from "react";
+import {
+  DndContext,
+  closestCenter,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import { arrayMove } from "@dnd-kit/sortable";
 
 const STORAGE_KEY = "todo-tasks";
 
@@ -21,11 +29,40 @@ function saveTasks(tasks) {
 function App() {
   const [tasks, setTasks] = useState(getTasks());
 
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 8,
+      },
+    })
+  );
+
+  const handleDragEnd = (event) => {
+    const { active, over } = event;
+    if (active.id !== over.id) {
+      setTasks((currentTasks) => {
+        const oldIndex = currentTasks.findIndex(
+          (task) => task.id === active.id
+        );
+        const newIndex = currentTasks.findIndex((task) => task.id === over.id);
+        return arrayMove(currentTasks, oldIndex, newIndex);
+      });
+    }
+  };
+
   const onAddTask = (task) => {
-    setTasks([
-      ...tasks,
-      { id: new Date().getMilliseconds(), name: task, completed: false },
+    setTasks((prevTasks) => [
+      ...prevTasks,
+      { id: Date.now(), name: task, completed: false },
     ]);
+  };
+
+  const onEditTask = (taskId, newName) => {
+    setTasks((currentTasks) =>
+      currentTasks.map((task) =>
+        task.id === taskId ? { ...task, name: newName } : task
+      )
+    );
   };
 
   const onToggleCompleted = (task, completed) => {
@@ -46,11 +83,20 @@ function App() {
     <main>
       <h1>Today's Tasks</h1>
       <section>
-        <TaskList
-          tasks={tasks}
-          toggleCompleted={onToggleCompleted}
-          deleteTask={onDeleteTask}
-        />
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          onDragEnd={handleDragEnd}
+        >
+          {tasks.length > 0 && (
+            <TaskList
+              tasks={tasks}
+              toggleCompleted={onToggleCompleted}
+              editTask={onEditTask}
+              deleteTask={onDeleteTask}
+            />
+          )}
+        </DndContext>
         <AddTaskControl addTask={onAddTask} />
       </section>
     </main>
