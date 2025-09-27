@@ -5,8 +5,9 @@ import { useState } from "react";
 
 function App() {
   const [tasks, setTasks] = useState([
-    { name: 'Haircut', completed: false },
+    { name: 'Shopping', completed: false },
     { name: 'Laundry', completed: false },
+    { name: 'Interview Prep', completed: false },
   ]);
 
   const onAddTask = (task) => {
