@@ -24,8 +24,20 @@
   border: none;
   background-color: transparent;
   color: #28a745;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   cursor: pointer;
   padding: 0;
   line-height: 1;
+  padding: .25rem;
+  border-radius: 1rem;
+  transition: .5s ease;
+
+  &:hover {
+    background-color: #c4e4ff60;
+  }
+
+  &:active {
+    background-color: #85c8ff99;
+  }
+
 }

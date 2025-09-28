@@ -1,5 +1,5 @@
 import "./TaskList.css";
-import TaskItem from "./components/TaskItem";
+import TaskItem from "./components/TaskItem/TaskItem";
 import { ListGroup } from "react-bootstrap";
 import {
   SortableContext,
