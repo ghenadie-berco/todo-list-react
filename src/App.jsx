@@ -90,6 +90,7 @@ function App() {
     <main>
       <h1>Today's Tasks</h1>
       <section>
+        <AddTaskControl addTask={onAddTask} />
         <DndContext
           sensors={sensors}
           collisionDetection={closestCenter}
@@ -104,7 +105,6 @@ function App() {
             />
           )}
         </DndContext>
-        <AddTaskControl addTask={onAddTask} />
       </section>
     </main>
   );
