@@ -1,10 +1,13 @@
+// React
 import { useState } from "react";
-import * as Icon from "react-bootstrap-icons";
+// Bootstrap
 import { ListGroup, Form } from "react-bootstrap";
-import "./TaskItem.css";
-
+import * as Icon from "react-bootstrap-icons";
+// DnD Kit
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+// Styles
+import "./TaskItem.css";
 
 function TaskItem({ task, toggleCompleted, deleteTask, editTask }) {
   const [isEditing, setIsEditing] = useState(false);

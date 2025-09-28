@@ -1,7 +1,6 @@
-import "./App.css";
-import TaskList from "./components/TaskList/TaskList";
-import AddTaskControl from "./components/AddTaskControl/AddTaskControl";
+// React
 import { useEffect, useState } from "react";
+// DnD Kit
 import {
   DndContext,
   closestCenter,
@@ -11,6 +10,11 @@ import {
   useSensors,
 } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
+// Components
+import TaskList from "./components/TaskList/TaskList";
+import AddTaskControl from "./components/AddTaskControl/AddTaskControl";
+// Styles
+import "./App.css";
 
 const STORAGE_KEY = "todo-tasks";
 

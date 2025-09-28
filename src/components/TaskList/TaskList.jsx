@@ -1,10 +1,14 @@
-import "./TaskList.css";
-import TaskItem from "./components/TaskItem/TaskItem";
+// Bootstrap
 import { ListGroup } from "react-bootstrap";
+// DnD Kit
 import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
+// Components
+import TaskItem from "./components/TaskItem/TaskItem";
+// Styles
+import "./TaskList.css";
 
 function TaskList({ tasks, toggleCompleted, editTask, deleteTask }) {
   return (
