@@ -1,6 +1,9 @@
-import "./AddTaskControl.css";
-import { PlusLg } from "react-bootstrap-icons";
+// React
 import { useState, useRef } from "react";
+// Bootrap
+import { PlusLg } from "react-bootstrap-icons";
+// Styles
+import "./AddTaskControl.css";
 
 function AddTaskControl({ addTask }) {
   const [name, setName] = useState("");
