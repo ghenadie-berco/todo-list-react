@@ -14,12 +14,18 @@ body {
   padding: 0;
 }
 
+html,
+body,
+#root {
+  height: 100%;
+}
+
 * {
   box-sizing: border-box;
 }
 
-body {
-  background: #b8d6ea;
+h1 {
+  font-size: 24px;
 }
 
 /* Works on Chrome, Edge, and Safari */
@@ -34,7 +40,7 @@ body {
 ::-webkit-scrollbar-thumb {
   background-color: #76c4f8;
   border-radius: 10px;
-  border: 2px solid #f1f1f1; 
+  border: 2px solid #f1f1f1;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -44,5 +50,5 @@ body {
 /* Works on Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #76c4f8 #f1f1f1; 
+  scrollbar-color: #76c4f8 #f1f1f1;
 }
