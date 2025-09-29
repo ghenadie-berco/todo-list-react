@@ -1,32 +1,25 @@
 // Bootstrap
-import { ListGroup } from "react-bootstrap";
-// DnD Kit
-import {
-  SortableContext,
-  verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
+import ListGroup from "react-bootstrap/ListGroup";
 // Components
 import TaskItem from "./components/TaskItem/TaskItem";
 // Styles
 import "./TaskList.css";
 
-function TaskList({ tasks, toggleCompleted, editTask, deleteTask }) {
+function TaskList({ tasks, toggleComplete, editTask, deleteTask }) {
   return (
-    <ListGroup className="list">
-      <SortableContext
-        items={tasks.map((task) => task.id)}
-        strategy={verticalListSortingStrategy}
-      >
-        {tasks.map((task) => (
-          <TaskItem
-            key={task.id}
-            task={task}
-            toggleCompleted={toggleCompleted}
-            editTask={editTask}
-            deleteTask={deleteTask}
-          />
-        ))}
-      </SortableContext>
+    <ListGroup>
+      {tasks.map((t) => {
+        return (
+          <ListGroup.Item key={t.id}>
+            <TaskItem
+              task={t}
+              toggleComplete={toggleComplete}
+              editTask={editTask}
+              deleteTask={deleteTask}
+            />
+          </ListGroup.Item>
+        );
+      })}
     </ListGroup>
   );
 }

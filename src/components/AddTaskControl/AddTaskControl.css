@@ -1,43 +1,27 @@
-.add-task-container {
+.add-task-control-container {
   display: flex;
   align-items: center;
-  background-color: white;
-  border-radius: .5rem;
-  padding: 0.5rem;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding-right: 0.5rem;
+  gap: 0.5rem;
+  background: #fff;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  padding: 0.5rem 1rem;
+  padding-right: 0.85rem;
 }
 
-.add-task-input {
-  flex-grow: 1;
-  border: none;
-  outline: none;
-  background-color: transparent;
-  font-size: 1.1rem;
-  color: #6c757d;
+#add-task-control {
+  border: none !important;
+  padding: 0 !important;
+  &:focus {
+    box-shadow: none !important;
+  }
 }
 
-.add-task-input::placeholder {
-  color: #9eaab7;
-}
-
-.add-task-button {
-  border: none;
-  background-color: transparent;
-  color: #28a745;
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 0;
-  line-height: 1;
-  padding: .25rem;
-  border-radius: 1rem;
-  transition: .5s ease;
-
+.plus-icon {
+  font-size: 1.75rem;
+  color: green;
   &:hover {
-    background-color: #c4e4ff60;
+    cursor: pointer;
   }
-
-  &:active {
-    background-color: #85c8ff99;
-  }
-
 }

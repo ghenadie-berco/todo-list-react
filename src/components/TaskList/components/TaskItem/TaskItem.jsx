@@ -1,103 +1,78 @@
 // React
 import { useState } from "react";
 // Bootstrap
-import { ListGroup, Form } from "react-bootstrap";
-import * as Icon from "react-bootstrap-icons";
-// DnD Kit
-import { useSortable } from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
+import Form from "react-bootstrap/Form";
+import { Trash3, CheckLg } from "react-bootstrap-icons";
 // Styles
 import "./TaskItem.css";
 
-function TaskItem({ task, toggleCompleted, deleteTask, editTask }) {
+function TaskItem({ task, toggleComplete, editTask, deleteTask }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [editedName, setEditedName] = useState(task.name);
+  const [taskName, setTaskName] = useState(task.name);
 
-  const {
-    attributes,
-    listeners,
-    setNodeRef,
-    transform,
-    transition,
-  } = useSortable({ id: task.id });
-
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
+  const onToggleComplete = () => {
+    toggleComplete(task);
   };
 
-  const handleSave = () => {
-    if (editedName.trim()) {
-      editTask(task.id, editedName);
-    } else {
-      setEditedName(task.name);
+  const enableTaskNameEditing = () => {
+    setIsEditing(true);
+  };
+
+  const handleEditKeyDown = (e) => {
+    if (e.key !== "Enter") {
+      return;
     }
     setIsEditing(false);
+    updateTaskName();
   };
 
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      handleSave();
-    }
+  const handleOnEditBlur = () => {
+    setIsEditing(false);
+    updateTaskName();
+  };
+
+  const updateTaskName = () => {
+    editTask({ taskId: task.id, name: taskName });
+  };
+
+  const onDeleteTask = () => {
+    deleteTask(task);
   };
 
   return (
-    <ListGroup.Item ref={setNodeRef} style={style} {...attributes} {...listeners} className="d-flex task-item">
-      <span
-        className={`check-icon ${task.completed ? "completed" : ""}`}
-        onClick={(e) => {
-          e.stopPropagation();
-          toggleCompleted(task, !task.completed);
-        }}
-      >
-        {task.completed && <Icon.CheckLg />}
-      </span>
-
+    <div className="task-item">
+      <Form.Check
+        id="completed-checkbox-control"
+        className="check-control"
+        checked={task.completed}
+        onChange={onToggleComplete}
+      />
       {isEditing ? (
         <Form.Control
+          id="edit-task-control"
           type="text"
-          value={editedName}
-          onChange={(e) => setEditedName(e.target.value)}
-          onBlur={handleSave}
-          onKeyDown={handleKeyDown}
-          onClick={(e) => e.stopPropagation()}
+          value={taskName}
+          onChange={(e) => setTaskName(e.target.value)}
+          onKeyDown={(e) => handleEditKeyDown(e)}
+          onBlur={handleOnEditBlur}
           autoFocus
-          className="edit-input"
         />
       ) : (
-        <span
-          className={`task-name ${
-            task.completed ? "text-decoration-line-through text-muted" : ""
-          }`}
-          onClick={(e) => {
-            e.stopPropagation();
-            setIsEditing(true);
-          }}
+        <div
+          className={
+            "task-name" + (task.completed ? "text-strike-through" : "")
+          }
+          onClick={() => enableTaskNameEditing()}
         >
           {task.name}
-        </span>
+        </div>
       )}
-
-      <div className="action-icon-container">
-        {isEditing ? (
-          <Icon.CheckLg
-            className="save-icon"
-            onClick={(e) => {
-              e.stopPropagation();
-              handleSave();
-            }}
-          />
-        ) : (
-          <Icon.Trash3
-            className="delete-icon"
-            onClick={(e) => {
-              e.stopPropagation();
-              deleteTask(task);
-            }}
-          />
-        )}
-      </div>
-    </ListGroup.Item>
+      {isEditing ? (
+        <CheckLg className="action-icon" onClick={updateTaskName} />
+      ) : (
+        <Trash3 className="action-icon delete-icon" onClick={onDeleteTask} />
+      )}
+    </div>
   );
 }
 
