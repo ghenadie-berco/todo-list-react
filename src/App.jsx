@@ -1,13 +1,24 @@
 // React
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // Components
 import AddTaskControl from "./components/AddTaskControl/AddTaskControl";
 import TaskList from "./components/TaskList/TaskList";
 // Styles
 import "./App.css";
+// Constants
+const STORAGE_KEY = "todo-tasks";
+
+const getTasks = () => {
+  const data = localStorage.getItem(STORAGE_KEY);
+  return data ? JSON.parse(data) : [];
+};
+
+const saveTasks = (tasks) => {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+};
 
 const App = () => {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(getTasks());
 
   const onAddNewTask = ({ name }) => {
     setTasks((current) => [
@@ -38,6 +49,8 @@ const App = () => {
   const onDeleteTask = (task) => {
     setTasks(tasks.filter((t) => t.id !== task.id));
   };
+
+  useEffect(() => saveTasks(tasks), [tasks]);
 
   return (
     <main>
