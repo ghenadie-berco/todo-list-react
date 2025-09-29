@@ -40,7 +40,7 @@ function TaskItem({ task, toggleComplete, editTask, deleteTask }) {
   };
 
   return (
-    <div className="task-item">
+    <div className="d-flex align-items-center gap-2">
       <Form.Check
         id="completed-checkbox-control"
         className="check-control"
@@ -51,6 +51,7 @@ function TaskItem({ task, toggleComplete, editTask, deleteTask }) {
         <Form.Control
           id="edit-task-control"
           type="text"
+          className="p-0 border-0 shadow-none"
           value={taskName}
           onChange={(e) => setTaskName(e.target.value)}
           onKeyDown={(e) => handleEditKeyDown(e)}
@@ -60,7 +61,7 @@ function TaskItem({ task, toggleComplete, editTask, deleteTask }) {
       ) : (
         <div
           className={
-            (task.completed ? "text-strike-through" : "") + " task-name"
+            (task.completed ? "text-decoration-line-through" : "") + " w-100"
           }
           onClick={() => enableTaskNameEditing()}
         >

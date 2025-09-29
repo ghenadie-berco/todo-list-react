@@ -31,11 +31,12 @@ function AddTaskControl({ addNewTask }) {
   };
 
   return (
-    <div className="add-task-control-container">
+    <div className="d-flex flex-row align-items-center gap-2 rounded-2 overflow-hidden add-task-control-container">
       <Form.Control
         ref={inputRef}
         id="add-task-control"
         type="text"
+        className="border-0 p-0 shadow-none"
         placeholder="Add new task..."
         onKeyDown={(e) => handleKeyDown(e)}
         onChange={(e) => setName(e.target.value)}

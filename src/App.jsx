@@ -68,9 +68,9 @@ const App = () => {
   useEffect(() => saveTasks(tasks), [tasks]);
 
   return (
-    <main>
+    <main className="h-100 d-flex flex-column justify-content-center align-items-center">
       <h1>Today's Tasks</h1>
-      <section>
+      <section className="d-flex flex-column p-2 gap-3 rounded-2">
         <AddTaskControl addNewTask={onAddNewTask} />
         {tasks.length > 0 && (
           <TaskList
