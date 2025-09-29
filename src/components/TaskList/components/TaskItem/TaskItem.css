@@ -3,7 +3,6 @@
   flex-flow: row nowrap;
   align-items: center;
   gap: 1rem;
-  width: 100%;
 }
 
 .check-control input {
@@ -25,7 +24,7 @@
 }
 
 .action-icon {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   
   &:hover {
     cursor: pointer;
