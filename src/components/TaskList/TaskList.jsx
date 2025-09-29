@@ -2,8 +2,6 @@
 import ListGroup from "react-bootstrap/ListGroup";
 // Components
 import TaskItem from "./components/TaskItem/TaskItem";
-// Styles
-import "./TaskList.css";
 
 function TaskList({ tasks, toggleComplete, editTask, deleteTask }) {
   return (
