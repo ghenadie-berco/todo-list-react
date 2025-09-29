@@ -1,17 +1,22 @@
 // Bootstrap
 import ListGroup from "react-bootstrap/ListGroup";
 // Components
-import TaskItem from "./components/TaskItem/TaskItem"
+import TaskItem from "./components/TaskItem/TaskItem";
 // Styles
 import "./TaskList.css";
 
-function TaskList({ tasks, toggleComplete, deleteTask }) {
+function TaskList({ tasks, toggleComplete, editTask, deleteTask }) {
   return (
     <ListGroup>
       {tasks.map((t) => {
         return (
           <ListGroup.Item key={t.id}>
-            <TaskItem task={t} toggleComplete={toggleComplete} deleteTask={deleteTask} />
+            <TaskItem
+              task={t}
+              toggleComplete={toggleComplete}
+              editTask={editTask}
+              deleteTask={deleteTask}
+            />
           </ListGroup.Item>
         );
       })}

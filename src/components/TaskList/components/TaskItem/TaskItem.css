@@ -2,7 +2,8 @@
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
+  width: 100%;
 }
 
 .check-control input {
@@ -11,14 +12,28 @@
   border-color: black;
 }
 
-.delete-icon {
-  color: #bd5555;
-  font-size: 1.25rem;
-  margin-left: auto;
+.task-name {
+  width: 100%;
+}
 
+#edit-task-control {
+  border: none !important;
+  padding: 0 !important;
+  &:focus {
+    box-shadow: none !important;
+  }
+}
+
+.action-icon {
+  font-size: 1.25rem;
+  
   &:hover {
     cursor: pointer;
   }
+}
+
+.delete-icon {
+  color: #bd5555;
 }
 
 .text-strike-through {

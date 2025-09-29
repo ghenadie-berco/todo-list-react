@@ -9,6 +9,7 @@ main {
 
 section {
   max-width: 373px;
+  width: min(373px, calc(100dvw - 2rem));
   min-width: 300px;
   background-color: #d5e8f0;
   padding: 10px;

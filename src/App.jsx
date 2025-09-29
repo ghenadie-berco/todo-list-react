@@ -46,6 +46,21 @@ const App = () => {
     );
   };
 
+  const onEditTask = ({ taskId, name }) => {
+    setTasks(
+      tasks.map((t) => {
+        if (t.id === taskId) {
+          return {
+            ...t,
+            name,
+          };
+        } else {
+          return t;
+        }
+      })
+    );
+  };
+
   const onDeleteTask = (task) => {
     setTasks(tasks.filter((t) => t.id !== task.id));
   };
@@ -61,6 +76,7 @@ const App = () => {
           <TaskList
             tasks={tasks}
             toggleComplete={onToggleComplete}
+            editTask={onEditTask}
             deleteTask={onDeleteTask}
           />
         )}
