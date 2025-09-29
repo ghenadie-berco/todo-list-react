@@ -15,6 +15,10 @@ function AddTaskControl({ addNewTask }) {
       return;
     }
     addNewTask({ name });
+    // Clear current name
+    setName('');
+    // Clear input
+    inputRef.value = '';
   };
 
   const handleKeyDown = (e) => {

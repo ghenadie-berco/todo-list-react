@@ -5,13 +5,13 @@ import TaskItem from "./components/TaskItem/TaskItem"
 // Styles
 import "./TaskList.css";
 
-function TaskList({ tasks, toggleComplete }) {
+function TaskList({ tasks, toggleComplete, deleteTask }) {
   return (
     <ListGroup>
       {tasks.map((t) => {
         return (
           <ListGroup.Item key={t.id}>
-            <TaskItem task={t} toggleComplete={toggleComplete} />
+            <TaskItem task={t} toggleComplete={toggleComplete} deleteTask={deleteTask} />
           </ListGroup.Item>
         );
       })}

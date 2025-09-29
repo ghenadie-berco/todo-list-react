@@ -1,3 +1,5 @@
+// Bootstrap
+import Form from "react-bootstrap/Form";
 // Styles
 import "./TaskItem.css";
 
@@ -6,8 +8,12 @@ function TaskItem({ task, toggleComplete }) {
     toggleComplete(task);
   };
   return (
-    <div>
-      <button onClick={onToggleComplete}>{task.completed ? 'No' : 'Yes'}</button>
+    <div className="task-item">
+      <Form.Check
+        id="completed-checkbox-control"
+        checked={task.completed}
+        onChange={onToggleComplete}
+      />
       <span>{task.name}</span>
     </div>
   );

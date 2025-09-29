@@ -35,12 +35,16 @@ const App = () => {
     );
   };
 
+  const onDeleteTask = (task) => {
+    setTasks(tasks.filter(t => t.id !== task.id));
+  }
+
   return (
     <main>
       <h1>Today's Tasks</h1>
       <section>
         <AddTaskControl addNewTask={onAddNewTask} />
-        <TaskList tasks={tasks} toggleComplete={onToggleComplete} />
+        <TaskList tasks={tasks} toggleComplete={onToggleComplete} deleteTask={onDeleteTask} />
       </section>
     </main>
   );
