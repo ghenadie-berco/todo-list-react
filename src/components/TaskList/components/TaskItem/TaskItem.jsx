@@ -60,7 +60,7 @@ function TaskItem({ task, toggleComplete, editTask, deleteTask }) {
       ) : (
         <div
           className={
-            "task-name" + (task.completed ? "text-strike-through" : "")
+            (task.completed ? "text-strike-through" : "") + " task-name"
           }
           onClick={() => enableTaskNameEditing()}
         >
