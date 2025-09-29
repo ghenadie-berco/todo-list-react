@@ -1,14 +1,14 @@
+// React
+import { useState } from "react";
 // Bootstrap
 import Form from "react-bootstrap/Form";
 import { Trash3, CheckLg } from "react-bootstrap-icons";
 // Styles
 import "./TaskItem.css";
-import { useEffect, useState } from "react";
 
 function TaskItem({ task, toggleComplete, editTask, deleteTask }) {
-
   const [isEditing, setIsEditing] = useState(false);
-  const [taskName, setTaskName] = useState("");
+  const [taskName, setTaskName] = useState(task.name);
 
   const onToggleComplete = () => {
     toggleComplete(task);
@@ -38,10 +38,6 @@ function TaskItem({ task, toggleComplete, editTask, deleteTask }) {
   const onDeleteTask = () => {
     deleteTask(task);
   };
-
-  useEffect(() => {
-    setTaskName(task.name);
-  }, []);
 
   return (
     <div className="task-item">
