@@ -20,12 +20,27 @@ const App = () => {
     ]);
   };
 
+  const onToggleComplete = (task) => {
+    setTasks(
+      tasks.map((t) => {
+        if (t.id === task.id) {
+          return {
+            ...t,
+            completed: !t.completed,
+          };
+        } else {
+          return t;
+        }
+      })
+    );
+  };
+
   return (
     <main>
       <h1>Today's Tasks</h1>
       <section>
         <AddTaskControl addNewTask={onAddNewTask} />
-        <TaskList tasks={tasks} />
+        <TaskList tasks={tasks} toggleComplete={onToggleComplete} />
       </section>
     </main>
   );
