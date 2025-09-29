@@ -2,13 +2,13 @@
 import { useRef, useState } from "react";
 // Bootstrap
 import Form from "react-bootstrap/Form";
-import * as Icon from "react-bootstrap-icons";
+import { PlusLg } from "react-bootstrap-icons";
 // Styles
 import "./AddTaskControl.css";
 
 function AddTaskControl({ addNewTask }) {
   const [name, setName] = useState("");
-  const inputRef = useRef();
+  const inputRef = useRef(null);
 
   const handleAddTask = () => {
     if (name.length === 0) {
@@ -16,9 +16,11 @@ function AddTaskControl({ addNewTask }) {
     }
     addNewTask({ name });
     // Clear current name
-    setName('');
+    setName("");
     // Clear input
-    inputRef.value = '';
+    if (inputRef.current) {
+      inputRef.current.value = "";
+    }
   };
 
   const handleKeyDown = (e) => {
@@ -38,7 +40,7 @@ function AddTaskControl({ addNewTask }) {
         onKeyDown={(e) => handleKeyDown(e)}
         onChange={(e) => setName(e.target.value)}
       />
-      <Icon.PlusLg className="plus-icon" onClick={handleAddTask} />
+      <PlusLg className="plus-icon" onClick={handleAddTask} />
     </div>
   );
 }

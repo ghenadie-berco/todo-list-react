@@ -1,0 +1,26 @@
+.task-item {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.check-control input {
+  width: 1.35rem;
+  height: 1.35rem;
+  border-color: black;
+}
+
+.delete-icon {
+  color: #bd5555;
+  font-size: 1.25rem;
+  margin-left: auto;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.text-strike-through {
+  text-decoration: line-through;
+}

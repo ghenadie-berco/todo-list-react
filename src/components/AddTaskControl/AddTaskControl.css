@@ -6,8 +6,8 @@
   background: #fff;
   border-radius: 0.5rem;
   overflow: hidden;
-  padding: 0.5rem;
-  padding-left: 1rem;
+  padding: 0.5rem 1rem;
+  padding-right: 0.85rem;
 }
 
 #add-task-control {
