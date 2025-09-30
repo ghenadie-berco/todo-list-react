@@ -1,6 +1,9 @@
 // React
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+// Redux
+import { Provider } from "react-redux";
+import store from "./store/store.jsx";
 // Components
 import App from "./App.jsx";
 // Bootstrap styles
@@ -10,6 +13,8 @@ import "./index.css";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </StrictMode>
 );
