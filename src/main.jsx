@@ -3,6 +3,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 // Redux
 import { Provider } from "react-redux";
+// Store
 import store from "./store/store.jsx";
 // Components
 import App from "./App.jsx";
