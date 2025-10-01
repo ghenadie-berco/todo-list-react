@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-// Store 
+// Action Creators
 import {
   addNewTask,
   editTask,
@@ -17,22 +17,22 @@ import "./App.css";
 // Constants
 export const STORAGE_KEY = "todo-tasks";
 
-const saveTasks = (tasks) => {
+function saveTasks(tasks) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
-};
+}
 
-const App = () => {
-  
+function App() {
   const tasks = useSelector((state) => state.tasks);
   const dispatch = useDispatch();
 
   const onAddTask = ({ name }) => {
-    const newTask = {
-      id: Date.now(),
-      name,
-      completed: false,
-    };
-    dispatch(addNewTask(newTask));
+    dispatch(
+      addNewTask({
+        id: Date.now(),
+        name,
+        completed: false,
+      })
+    );
   };
 
   const onToggleComplete = (task) => {
@@ -65,6 +65,6 @@ const App = () => {
       </section>
     </main>
   );
-};
+}
 
 export default App;

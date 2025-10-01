@@ -7,6 +7,7 @@ import { Trash3, CheckLg } from "react-bootstrap-icons";
 import "./TaskItem.css";
 
 function TaskItem({ task, toggleComplete, editTask, deleteTask }) {
+  
   const [isEditing, setIsEditing] = useState(false);
   const [taskName, setTaskName] = useState(task.name);
 

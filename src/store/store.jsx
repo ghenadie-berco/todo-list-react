@@ -10,10 +10,10 @@ import {
 // Constants
 import { STORAGE_KEY } from "../App.jsx";
 
-const getTasks = () => {
+function getTasks() {
   const data = localStorage.getItem(STORAGE_KEY);
   return data ? JSON.parse(data) : [];
-};
+}
 
 const initialState = {
   tasks: getTasks(),
@@ -59,7 +59,10 @@ const tasksReducer = (state = initialState, action) => {
         ...state,
         tasks: state.tasks.map((t) => {
           if (t.id === action.task.id) {
-            return action.task;
+            return {
+              ...t,
+              ...action.task,
+            };
           } else {
             return t;
           }
