@@ -49,7 +49,6 @@ function App() {
   };
 
   const onTasksRearrange = (tasks) => {
-    console.log("rearranging");
     dispatch(setTasks(tasks));
   };
 
