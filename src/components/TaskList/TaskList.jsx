@@ -30,7 +30,7 @@ function TaskList({
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
-        delay: 100, // User must press and hold for 100ms
+        delay: 100, // User must press and hold
         tolerance: 5, // User can move their finger 5px before the delay is canceled
       },
     }),
@@ -84,6 +84,7 @@ function SortableItem(props) {
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
+    touchAction: "none",
   };
 
   return (
