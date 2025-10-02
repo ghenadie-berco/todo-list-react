@@ -6,6 +6,7 @@ import {
   EDIT_TASK,
   TOGGLE_COMPLETE_TASK,
   DELETE_TASK,
+  SET_TASKS,
 } from "./actionTypes.jsx";
 // Constants
 import { STORAGE_KEY } from "../App.jsx";
@@ -22,28 +23,35 @@ const initialState = {
 export function addNewTask(task) {
   return {
     type: ADD_TASK,
-    task: task,
+    data: task,
   };
 }
 
 export function editTask(task) {
   return {
     type: EDIT_TASK,
-    task: task,
-  };
-}
-
-export function deleteTask(task) {
-  return {
-    type: DELETE_TASK,
-    task: task,
+    data: task,
   };
 }
 
 export function toggleCompleteTask(task) {
   return {
     type: TOGGLE_COMPLETE_TASK,
-    task: task,
+    data: task,
+  };
+}
+
+export function deleteTask(task) {
+  return {
+    type: DELETE_TASK,
+    data: task,
+  };
+}
+
+export function setTasks(tasks) {
+  return {
+    type: SET_TASKS,
+    data: tasks,
   };
 }
 
@@ -52,16 +60,16 @@ const tasksReducer = (state = initialState, action) => {
     case ADD_TASK:
       return {
         ...state,
-        tasks: [...state.tasks, action.task],
+        tasks: [...state.tasks, action.data],
       };
     case EDIT_TASK:
       return {
         ...state,
         tasks: state.tasks.map((t) => {
-          if (t.id === action.task.id) {
+          if (t.id === action.data.id) {
             return {
               ...t,
-              ...action.task,
+              ...action.data,
             };
           } else {
             return t;
@@ -85,7 +93,12 @@ const tasksReducer = (state = initialState, action) => {
     case DELETE_TASK:
       return {
         ...state,
-        tasks: state.tasks.filter((t) => t.id !== action.task.id),
+        tasks: state.tasks.filter((t) => t.id !== action.data.id),
+      };
+    case SET_TASKS:
+      return {
+        ...state,
+        tasks: action.data,
       };
     default:
       return state;

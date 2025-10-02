@@ -8,6 +8,7 @@ import {
   editTask,
   deleteTask,
   toggleCompleteTask,
+  setTasks,
 } from "./store/store";
 // Components
 import AddTaskControl from "./components/AddTaskControl/AddTaskControl";
@@ -47,6 +48,11 @@ function App() {
     dispatch(deleteTask(task));
   };
 
+  const onTasksRearrange = (tasks) => {
+    console.log("rearranging");
+    dispatch(setTasks(tasks));
+  };
+
   useEffect(() => saveTasks(tasks), [tasks]);
 
   return (
@@ -60,6 +66,7 @@ function App() {
             toggleComplete={onToggleComplete}
             editTask={onEditTask}
             deleteTask={onDeleteTask}
+            tasksRearrange={onTasksRearrange}
           />
         )}
       </section>
