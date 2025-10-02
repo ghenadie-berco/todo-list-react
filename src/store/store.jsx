@@ -80,7 +80,7 @@ const tasksReducer = (state = initialState, action) => {
       return {
         ...state,
         tasks: state.tasks.map((t) => {
-          if (t.id === action.task.id) {
+          if (t.id === action.data.id) {
             return {
               ...t,
               completed: !t.completed,
