@@ -1,5 +1,7 @@
 # A simple Todo List on React + Vite
 
+![Screenshot](image.png)
+
 ## [View It Online](https://todo-list-react-eight-xi.vercel.app/)
 
 # Local Setup:
@@ -10,6 +12,7 @@
 npm install
 
 ```
+
 ## Run the application:
 
 ```
