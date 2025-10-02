@@ -28,7 +28,12 @@ function TaskList({
   tasksRearrange,
 }) {
   const sensors = useSensors(
-    useSensor(PointerSensor),
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        delay: 100, // User must press and hold for 100ms
+        tolerance: 5, // User can move their finger 5px before the delay is canceled
+      },
+    }),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
     })
@@ -79,7 +84,6 @@ function SortableItem(props) {
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
-    "pointer-events": "none",
   };
 
   return (
